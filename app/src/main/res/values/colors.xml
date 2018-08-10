@@ -3,4 +3,20 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="sys_line">#cccccc</color>
+
+    <!-- 透明 -->
+    <color name="nothing">#00000000</color>
+    <!-- 半透明 -->
+    <color name="translucent">#556495ED</color>
+    <color name="sys_home_tab_select">#ef7542</color>
+
+    <color name="white">#FFFFFF</color>
+
+    <color name="text_color_33">#333333</color>
+    <color name="text_color_66">#666666</color>
+    <color name="text_color_99">#999999</color>
+    <color name="black">#000000</color>
+    <color name="transparent">#00000000</color>
 </resources>
