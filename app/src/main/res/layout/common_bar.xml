@@ -3,7 +3,7 @@
     android:id="@+id/titleBar"
     android:layout_width="match_parent"
     android:layout_height="45dp"
-    android:background="@color/white"
+    android:background="@color/sys_home_tab_select"
     android:orientation="vertical">
 
     <LinearLayout
@@ -34,6 +34,7 @@
     </LinearLayout>
 
     <TextView
+        android:textStyle="bold"
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -42,7 +43,7 @@
         android:gravity="center"
         android:maxLength="12"
         android:singleLine="true"
-        android:textColor="@color/text_color_33"
+        android:textColor="@color/white"
         android:textSize="18sp" />
 
     <LinearLayout
@@ -61,7 +62,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="返回"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/white"
             android:textSize="16sp"
             android:visibility="gone" />
 

@@ -1,7 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:background="@color/sys_home_tab_select">
+
+        <EditText
+            android:id="@+id/activity_search_book_name"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/search_book_edit"
+            android:hint="输入书名、作者名或者分类"
+            android:imeOptions="actionSearch"
+            android:padding="10dp"
+            android:singleLine="true"
+            android:textColor="@color/text_color_99"
+            android:textColorHint="@color/text_color_99"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/activity_search_book_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="8dp"
+            android:text="取消"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/activity_search_book_re_reflash"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_color"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="热门推荐"
+            android:textColor="@color/text_color_99"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/activity_search_book_reflash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:drawableLeft="@mipmap/icon_reflash"
+            android:text="换一批"
+            android:textColor="@color/text_color_99"
+            android:textSize="14sp" />
+    </RelativeLayout>
 
 
-</RelativeLayout>
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="5dp"
+        android:id="@+id/activity_search_book_reflash_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp" />
+
+
+    <RelativeLayout
+        android:id="@+id/activity_search_book_re_clean"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/bg_color"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="搜索历史"
+            android:textColor="@color/text_color_99"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/activity_search_book_clean"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:text="清除"
+            android:textColor="@color/text_color_99"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/activity_search_book_history_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp" />
+
+    <com.liaoinstan.springview.widget.SpringView
+        android:id="@+id/history_spring_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/history_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+    </com.liaoinstan.springview.widget.SpringView>
+</LinearLayout>
