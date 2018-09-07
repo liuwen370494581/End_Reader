@@ -15,18 +15,15 @@ import com.example.liuwen.end_reader.EventBus.Event;
 import com.example.liuwen.end_reader.Listener.OnCommonBarListener;
 import com.example.liuwen.end_reader.Utils.ToastUtils;
 import com.example.liuwen.end_reader.View.CircleImageView;
+import com.example.liuwen.end_reader.View.MyViewPager;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 @BindEventBus
 public class MainActivity extends BaseActivity {
-    private TabLayout tlTabMenu;
-    private ImageView ivSearch;
-    private ViewPager vpContent;
-    private RelativeLayout rlCommonTitle;
-    private TextView tvEditFinish;
-    private RelativeLayout rlEditTitile;
+    private MyViewPager myViewPager;
+    private TabLayout mTableLayout;
 
     private MainPresenter mMainPresenter;
 
@@ -37,12 +34,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        tlTabMenu = getView(R.id.tl_tab_menu);
-        ivSearch = getView(R.id.iv_search);
-        vpContent = getView(R.id.vp_content);
-        rlCommonTitle = getView(R.id.rl_common_title);
-        rlEditTitile = getView(R.id.rl_edit_titile);
-        tvEditFinish = getView(R.id.tv_edit_finish);
+        myViewPager = getView(R.id.id_viewpager);
+        mTableLayout = (TabLayout) findViewById(R.id.id_tab_layout);
         setCenterText("追书神器");
         setRightListener(new OnCommonBarListener() {
             @Override
@@ -74,28 +67,11 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-
-    public TabLayout getTlTabMenu() {
-        return tlTabMenu;
+    public MyViewPager getMyViewPager() {
+        return myViewPager;
     }
 
-    public ImageView getIvSearch() {
-        return ivSearch;
-    }
-
-    public ViewPager getVpContent() {
-        return vpContent;
-    }
-
-    public RelativeLayout getRlCommonTitle() {
-        return rlCommonTitle;
-    }
-
-    public TextView getTvEditFinish() {
-        return tvEditFinish;
-    }
-
-    public RelativeLayout getRlEditTitile() {
-        return rlEditTitile;
+    public TabLayout getmTableLayout() {
+        return mTableLayout;
     }
 }

@@ -5,7 +5,11 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.example.liuwen.end_reader.Activity.SearchBookActivity;
 import com.example.liuwen.end_reader.Base.BaseFragment;
 import com.example.liuwen.end_reader.EventBus.Event;
 import com.example.liuwen.end_reader.R;
@@ -20,6 +24,8 @@ import org.greenrobot.eventbus.ThreadMode;
  * desc   :
  */
 public class BookFragment extends BaseFragment {
+
+
     @Override
     public void initData() {
 
@@ -32,8 +38,18 @@ public class BookFragment extends BaseFragment {
         initView(view);
         return view;
     }
-    private void initView(View view){
 
+    private void initView(View view) {
+        ((TextView) view.findViewById(R.id.title)).setText("书架");
+        ((LinearLayout) view.findViewById(R.id.right_view)).setVisibility(View.VISIBLE);
+        ImageView imgSearch = (ImageView) view.findViewById(R.id.toolbar_righ_iv);
+        imgSearch.setVisibility(View.VISIBLE);
+        imgSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openActivity(SearchBookActivity.class);
+            }
+        });
     }
 
 }

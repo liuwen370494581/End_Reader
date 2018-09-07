@@ -1,18 +1,29 @@
 package com.example.liuwen.end_reader.Activity;
 
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.liuwen.end_reader.Action.SearchBookAction;
 import com.example.liuwen.end_reader.Base.BaseActivity;
+import com.example.liuwen.end_reader.Bean.Dish;
+import com.example.liuwen.end_reader.DateLoad.HttpDataSource;
 import com.example.liuwen.end_reader.EventBus.C;
 import com.example.liuwen.end_reader.EventBus.Event;
 import com.example.liuwen.end_reader.EventBus.EventBusUtil;
 import com.example.liuwen.end_reader.R;
+import com.example.liuwen.end_reader.Utils.KeyboardUtil;
 import com.liaoinstan.springview.widget.SpringView;
+
+import cn.bingoogolapple.androidcommon.adapter.BGARecyclerViewAdapter;
+import cn.bingoogolapple.androidcommon.adapter.BGAViewHolderHelper;
 
 /**
  * author : liuwen
@@ -27,8 +38,8 @@ public class SearchBookActivity extends BaseActivity {
     private RelativeLayout reReFlash;
     private RecyclerView mRecyclerReFlash, mRecyclerClean, mRecyclerHistory;
     private SpringView mSpringView;
-
-    private SearchPresenter mSearchPresenter;
+    private ReFlashAdapter mReFlashAdapter;
+    private int reFlash = 2;
 
     @Override
     protected int setLayoutRes() {
@@ -46,12 +57,17 @@ public class SearchBookActivity extends BaseActivity {
         mRecyclerClean = getView(R.id.activity_search_book_history_recycler_view);
         mRecyclerHistory = getView(R.id.history_recycler_view);
         mSpringView = getView(R.id.history_spring_view);
-        mSearchPresenter = new SearchPresenter(this);
-        mSearchPresenter.start();
+        KeyboardUtil.hideInputMethodWindow(this, mEditName);
     }
 
     @Override
     protected void initData() {
+        //书籍刷新模块
+        reFlashModel();
+        //书籍历史记录查询模块
+        searchBookHistory();
+        //书籍查询结果模块
+        searchBookDetail();
 
     }
 
@@ -61,39 +77,57 @@ public class SearchBookActivity extends BaseActivity {
     }
 
 
-    public EditText getmEditName() {
-        return mEditName;
+    private void reFlashModel() {
+        GridLayoutManager manager = new GridLayoutManager(getActivityContext(), 3, LinearLayoutManager.HORIZONTAL, false);
+        mRecyclerReFlash.setLayoutManager(manager);
+        mReFlashAdapter = new ReFlashAdapter(mRecyclerReFlash);
+        mReFlashAdapter.setData(SearchBookAction.getReflashData());
+        mRecyclerReFlash.setAdapter(mReFlashAdapter);
+        mRecyclerReFlash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (reFlash) {
+                    case 1:
+                        mReFlashAdapter.setData(SearchBookAction.getReflashData());
+                        reFlash = 2;
+                        break;
+                    case 2:
+                        mReFlashAdapter.setData(SearchBookAction.getReflashData_2());
+                        reFlash = 3;
+                        break;
+                    case 3:
+                        mReFlashAdapter.setData(SearchBookAction.getReflashData_3());
+                        reFlash = 1;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
     }
 
-    public TextView getTvCancel() {
-        return tvCancel;
+    private void searchBookHistory() {
+
     }
 
-    public TextView getTvReFlash() {
-        return tvReFlash;
+    private void searchBookDetail() {
+
     }
 
-    public TextView getTvClean() {
-        return tvClean;
+
+    private class ReFlashAdapter extends BGARecyclerViewAdapter<Dish> {
+
+        private ReFlashAdapter(RecyclerView recyclerView) {
+            super(recyclerView, R.layout.item_search_book_reflash);
+        }
+
+        @Override
+        protected void fillData(BGAViewHolderHelper helper, int position, Dish model) {
+            helper.setText(R.id.item_name, model.getTitle());
+            GradientDrawable p = (GradientDrawable) helper.getView(R.id.item_name).getBackground();
+            p.setColor(Color.parseColor(SearchBookAction.getRandomColor()));
+        }
     }
 
-    public RelativeLayout getReReFlash() {
-        return reReFlash;
-    }
 
-    public RecyclerView getmRecyclerReFlash() {
-        return mRecyclerReFlash;
-    }
-
-    public RecyclerView getmRecyclerClean() {
-        return mRecyclerClean;
-    }
-
-    public RecyclerView getmRecyclerHistory() {
-        return mRecyclerHistory;
-    }
-
-    public SpringView getmSpringView() {
-        return mSpringView;
-    }
 }

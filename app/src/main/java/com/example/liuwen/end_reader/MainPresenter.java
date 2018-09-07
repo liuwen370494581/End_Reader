@@ -1,12 +1,20 @@
 package com.example.liuwen.end_reader;
 
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.example.liuwen.end_reader.Adapter.MainAdapter;
 import com.example.liuwen.end_reader.Base.BasePresenter;
 import com.example.liuwen.end_reader.Fragment.BookCityFragment;
 import com.example.liuwen.end_reader.Fragment.BookFragment;
+import com.example.liuwen.end_reader.Fragment.UserInfoFragment;
 
 import java.util.ArrayList;
 
@@ -20,7 +28,10 @@ public class MainPresenter implements BasePresenter {
 
     private MainActivity mMainActivity;
     private ArrayList<Fragment> mFragments = new ArrayList<>();
-    private String[] tabTitle = {"书架", "书城"};
+    private String[] mTabTextArr;
+    private MainAdapter mMainAdapter;
+    private final int[] mImgNormalResArr = {R.mipmap.icon_book_gray, R.mipmap.icon_book_shopping_gray, R.mipmap.icon_user_gray,};
+    private final int[] mImgSelectedResArr = {R.mipmap.icon_book, R.mipmap.icon_book_shopping, R.mipmap.icon_user};
 
     public MainPresenter(MainActivity mainActivity) {
         this.mMainActivity = mainActivity;
@@ -32,28 +43,85 @@ public class MainPresenter implements BasePresenter {
     }
 
     private void initDate() {
+        mTabTextArr = mMainActivity.getResources().getStringArray(R.array.tabs);
         mFragments.add(new BookFragment());
         mFragments.add(new BookCityFragment());
-        mMainActivity.getVpContent().setAdapter(new FragmentPagerAdapter(mMainActivity.getSupportFragmentManager()) {
+        mFragments.add(new UserInfoFragment());
+        mMainAdapter = new MainAdapter(mFragments, mMainActivity.getSupportFragmentManager());
+        mMainActivity.getMyViewPager().setAdapter(mMainAdapter);
+        mMainActivity.getMyViewPager().setOffscreenPageLimit(0);
+        mMainActivity.getMyViewPager().setSlipping(false);
+        mMainActivity.getmTableLayout().setTabMode(TabLayout.MODE_FIXED);
+        mMainActivity.getmTableLayout().addTab(mMainActivity.getmTableLayout().newTab().setCustomView(getTabView(0)));
+        mMainActivity.getmTableLayout().addTab(mMainActivity.getmTableLayout().newTab().setCustomView(getTabView(1)));
+        mMainActivity.getmTableLayout().addTab(mMainActivity.getmTableLayout().newTab().setCustomView(getTabView(2)));
+
+        mMainActivity.getMyViewPager().addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public Fragment getItem(int position) {
-                return mFragments.get(position);
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
             }
 
             @Override
-            public int getCount() {
-                return mFragments.size();
+            public void onPageSelected(int position) {
+                setSelectedTabStyle(mMainActivity.getmTableLayout(), position);
             }
 
-            @Nullable
             @Override
-            public CharSequence getPageTitle(int position) {
-                return tabTitle[position];
+            public void onPageScrollStateChanged(int state) {
+
             }
         });
+        mMainActivity.getmTableLayout().addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                setSelectedTabStyle(mMainActivity.getmTableLayout(), mMainActivity.getmTableLayout().getSelectedTabPosition());
+                mMainActivity.getMyViewPager().setCurrentItem(tab.getPosition());
+            }
 
-        mMainActivity.getTlTabMenu().setupWithViewPager(mMainActivity.getVpContent());
-        mMainActivity.getVpContent().setCurrentItem(0);
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+        setSelectedTabStyle(mMainActivity.getmTableLayout(), mMainActivity.getmTableLayout().getSelectedTabPosition());
+    }
+
+
+    private void setSelectedTabStyle(TabLayout tabLayout, int position) {
+        try {
+            TextView tv = null;
+            ImageView img = null;
+            for (int i = 0; i < tabLayout.getTabCount(); i++) {
+                TabLayout.Tab tab = tabLayout.getTabAt(i);
+                tv = (TextView) tab.getCustomView().findViewById(R.id.id_tab_tv);
+                tv.setTextColor(ContextCompat.getColor(mMainActivity, R.color.black));
+                img = (ImageView) tab.getCustomView().findViewById(R.id.id_tab_img);
+                img.setImageResource(mImgNormalResArr[i]);
+            }
+            TabLayout.Tab selectedTab = tabLayout.getTabAt(position);
+            tv = (TextView) selectedTab.getCustomView().findViewById(R.id.id_tab_tv);
+            tv.setTextColor(ContextCompat.getColor(mMainActivity, R.color.colorPrimary));
+            img = (ImageView) selectedTab.getCustomView().findViewById(R.id.id_tab_img);
+            img.setImageResource(mImgSelectedResArr[position]);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private View getTabView(int position) {
+        View view = View.inflate(mMainActivity, R.layout.main_tab_layout, null);
+        TextView tv = (TextView) view.findViewById(R.id.id_tab_tv);
+        ImageView img = (ImageView) view.findViewById(R.id.id_tab_img);
+        tv.setText(mTabTextArr[position]);
+        img.setImageResource(mImgNormalResArr[position]);
+        return view;
     }
 
 
