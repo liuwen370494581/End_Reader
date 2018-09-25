@@ -21,6 +21,7 @@ import com.example.liuwen.end_reader.Utils.ActivityKiller;
 import com.example.liuwen.end_reader.Utils.StatusBarUtil;
 import com.example.liuwen.end_reader.Utils.ToastUtils;
 import com.example.liuwen.end_reader.View.LoadingProgressDialog;
+import com.example.liuwen.end_reader.View.TipDialog;
 
 /**
  * author : liuwen
@@ -36,6 +37,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private AppInfo mApp;
     private Context mActivityContext, mAppContext;//尽量地采用 Application Context 避免内存泄漏
     private LoadingProgressDialog mLoadingDialog;
+    private TipDialog mTipDialog;
 
 
     @Override
@@ -53,6 +55,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             }
         }
         setContentView(setLayoutRes());
+
         initView();//初始化视图
         initData();
         setListener();
@@ -62,6 +65,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             EventBusUtil.register(this);
         }
         ActivityKiller.getInstance().addActivity(this);
+        StatusBarUtil.setColor(this, ContextCompat.getColor(mActivityContext, R.color.transparent), 0);
     }
 
     public AppInfo getApp() {
@@ -153,6 +157,24 @@ public abstract class BaseActivity extends AppCompatActivity {
             if (null != mLoadingDialog && mLoadingDialog.isShowing())
                 mLoadingDialog.closeDialog();
             mLoadingDialog = null;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showTipDialog(TipDialog.ITipDialogListener mListener) {
+        try {
+            if (mTipDialog == null) {
+                mTipDialog = new TipDialog(getActivityContext(), getString(R.string.loading_fail));
+                mTipDialog.show();
+                mTipDialog.setCancelable(false);
+                mTipDialog.setRightButtonVisible(true);
+                mTipDialog.setCenterPosition();
+                mTipDialog.setLeftText(getString(R.string.cancel));
+                mTipDialog.setRightText(getString(R.string.loading_again));
+                mTipDialog.setListener(mListener);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

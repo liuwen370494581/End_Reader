@@ -18,8 +18,6 @@ public class Config {
     public static String publicKey;//服务端公钥
     public static String privateKey;//app私钥
     public final static String s = "11940364935628058505";
-
-
     public final static String TAG = "MainActivity";
     public static boolean isRSA = false;
 }

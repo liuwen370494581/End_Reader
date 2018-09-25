@@ -16,6 +16,12 @@ import java.util.Map;
 public class CommonApi extends BaseApi {
 
 
+    /**
+     * 搜索小说名
+     *
+     * @param bookName
+     * @param callback
+     */
     public static void searchBook(String bookName, final ResultCallback callback) {
         Map<String, Object> params = new HashMap<>();
         params.put("s", Config.s);
@@ -24,12 +30,12 @@ public class CommonApi extends BaseApi {
         getCommonReturnHtmlStringApi(Config.method_buxiu_search, params, "utf-8", new ResultCallback() {
             @Override
             public void onFinish(Object o, int code) {
-                callback.onFinish(HtmlParserUtil.getBooksFromSearchHtml((String) o),code);
+                callback.onFinish(HtmlParserUtil.getBooksFromSearchHtml((String) o), code);
             }
 
             @Override
             public void onError(Exception e) {
-               callback.onError(e);
+                callback.onError(e);
             }
         });
     }

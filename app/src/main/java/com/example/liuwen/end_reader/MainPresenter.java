@@ -14,7 +14,9 @@ import com.example.liuwen.end_reader.Adapter.MainAdapter;
 import com.example.liuwen.end_reader.Base.BasePresenter;
 import com.example.liuwen.end_reader.Fragment.BookCityFragment;
 import com.example.liuwen.end_reader.Fragment.BookFragment;
+import com.example.liuwen.end_reader.Fragment.SearchFragment;
 import com.example.liuwen.end_reader.Fragment.UserInfoFragment;
+import com.example.liuwen.end_reader.Utils.StatusBarUtil;
 
 import java.util.ArrayList;
 
@@ -30,8 +32,8 @@ public class MainPresenter implements BasePresenter {
     private ArrayList<Fragment> mFragments = new ArrayList<>();
     private String[] mTabTextArr;
     private MainAdapter mMainAdapter;
-    private final int[] mImgNormalResArr = {R.mipmap.icon_book_gray, R.mipmap.icon_book_shopping_gray, R.mipmap.icon_user_gray,};
-    private final int[] mImgSelectedResArr = {R.mipmap.icon_book, R.mipmap.icon_book_shopping, R.mipmap.icon_user};
+    private final int[] mImgNormalResArr = {R.mipmap.ic_tab_home_normal, R.mipmap.ic_tab_search_normal, R.mipmap.ic_tab_discover_normal, R.mipmap.ic_tab_mine_normal};
+    private final int[] mImgSelectedResArr = {R.mipmap.ic_tab_home_pressed, R.mipmap.ic_tab_search_pressed, R.mipmap.ic_tab_discover_pressed, R.mipmap.ic_tab_mine_pressed};
 
     public MainPresenter(MainActivity mainActivity) {
         this.mMainActivity = mainActivity;
@@ -45,6 +47,7 @@ public class MainPresenter implements BasePresenter {
     private void initDate() {
         mTabTextArr = mMainActivity.getResources().getStringArray(R.array.tabs);
         mFragments.add(new BookFragment());
+        mFragments.add(new SearchFragment());
         mFragments.add(new BookCityFragment());
         mFragments.add(new UserInfoFragment());
         mMainAdapter = new MainAdapter(mFragments, mMainActivity.getSupportFragmentManager());
@@ -55,7 +58,7 @@ public class MainPresenter implements BasePresenter {
         mMainActivity.getmTableLayout().addTab(mMainActivity.getmTableLayout().newTab().setCustomView(getTabView(0)));
         mMainActivity.getmTableLayout().addTab(mMainActivity.getmTableLayout().newTab().setCustomView(getTabView(1)));
         mMainActivity.getmTableLayout().addTab(mMainActivity.getmTableLayout().newTab().setCustomView(getTabView(2)));
-
+        mMainActivity.getmTableLayout().addTab(mMainActivity.getmTableLayout().newTab().setCustomView(getTabView(3)));
         mMainActivity.getMyViewPager().addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -65,6 +68,11 @@ public class MainPresenter implements BasePresenter {
             @Override
             public void onPageSelected(int position) {
                 setSelectedTabStyle(mMainActivity.getmTableLayout(), position);
+                if (position == 3) {
+                    StatusBarUtil.setColor(mMainActivity, ContextCompat.getColor(mMainActivity, R.color.main_text_color_focus), 0);
+                } else {
+                    StatusBarUtil.setColor(mMainActivity, ContextCompat.getColor(mMainActivity, R.color.transparent), 0);
+                }
             }
 
             @Override
@@ -106,7 +114,7 @@ public class MainPresenter implements BasePresenter {
             }
             TabLayout.Tab selectedTab = tabLayout.getTabAt(position);
             tv = (TextView) selectedTab.getCustomView().findViewById(R.id.id_tab_tv);
-            tv.setTextColor(ContextCompat.getColor(mMainActivity, R.color.colorPrimary));
+            tv.setTextColor(ContextCompat.getColor(mMainActivity, R.color.main_text_color_focus));
             img = (ImageView) selectedTab.getCustomView().findViewById(R.id.id_tab_img);
             img.setImageResource(mImgSelectedResArr[position]);
         } catch (Exception e) {

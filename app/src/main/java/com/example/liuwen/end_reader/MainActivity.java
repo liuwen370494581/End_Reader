@@ -1,5 +1,6 @@
 package com.example.liuwen.end_reader;
 
+import android.content.Context;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -36,7 +37,7 @@ public class MainActivity extends BaseActivity {
     protected void initView() {
         myViewPager = getView(R.id.id_viewpager);
         mTableLayout = (TabLayout) findViewById(R.id.id_tab_layout);
-        setCenterText("追书神器");
+        setCenterText(getString(R.string.app_name));
         setRightListener(new OnCommonBarListener() {
             @Override
             public void onRightChoiceListener() {

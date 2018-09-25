@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:background="@color/white"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <LinearLayout
@@ -22,9 +22,10 @@
             android:background="@drawable/search_book_edit"
             android:hint="输入书名、作者名或者分类"
             android:imeOptions="actionSearch"
+            android:inputType="text"
             android:padding="10dp"
             android:singleLine="true"
-            android:textColor="@color/text_color_99"
+            android:textColor="@color/text_color_33"
             android:textColorHint="@color/text_color_99"
             android:textSize="14sp" />
 
@@ -37,7 +38,7 @@
             android:text="取消"
             android:textColor="@color/white"
             android:textSize="16sp"
-            android:visibility="gone" />
+            android:visibility="visible" />
     </LinearLayout>
 
     <RelativeLayout
@@ -70,11 +71,11 @@
 
 
     <android.support.v7.widget.RecyclerView
-        android:layout_marginTop="5dp"
         android:id="@+id/activity_search_book_reflash_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp" />
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp" />
 
 
     <RelativeLayout
