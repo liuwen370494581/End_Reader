@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="返回"
-            android:textColor="@color/main_text_color_focus"
+            android:textColor="@color/text_color_33"
             android:textSize="16sp" />
     </LinearLayout>
 
@@ -42,7 +42,7 @@
         android:gravity="center"
         android:maxLength="12"
         android:singleLine="true"
-        android:textColor="@color/main_text_color_focus"
+        android:textColor="@color/text_color_33"
         android:textSize="18sp" />
 
     <LinearLayout
@@ -61,7 +61,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="返回"
-            android:textColor="@color/main_text_color_focus"
+            android:textColor="@color/text_color_33"
             android:textSize="16sp"
             android:visibility="gone" />
 
@@ -70,7 +70,6 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_gravity="center"
-            android:src="@mipmap/search"
             android:visibility="gone" />
     </LinearLayout>
 </RelativeLayout>

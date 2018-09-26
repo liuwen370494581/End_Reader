@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.example.liuwen.end_reader.Base.BaseFragment;
 import com.example.liuwen.end_reader.R;
+import com.example.liuwen.end_reader.View.SearchBar;
 
 /**
  * author : liuwen
@@ -16,6 +17,8 @@ import com.example.liuwen.end_reader.R;
  * desc   : 搜索页面
  */
 public class SearchFragment extends BaseFragment {
+
+    private SearchBar mSearchBar;
 
 
     @Override
@@ -32,6 +35,6 @@ public class SearchFragment extends BaseFragment {
     }
 
     private void initView(View view) {
-
+        mSearchBar = (SearchBar) view.findViewById(R.id.id_search_bar);
     }
 }

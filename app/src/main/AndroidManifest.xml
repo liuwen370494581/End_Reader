@@ -24,6 +24,8 @@
         </activity>
 
         <activity android:name=".Activity.SearchBookActivity" />
+        <activity android:name=".Activity.SourceSettingActivity" />
+        <activity android:name=".Activity.SearchResultActivity" />
     </application>
 
 </manifest>
