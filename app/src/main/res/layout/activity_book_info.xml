@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_bar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <com.example.liuwen.end_reader.View.CornerImageView
+            android:id="@+id/iv_book_cover"
+            android:layout_width="72dp"
+            android:layout_height="96dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_default_cover"
+            app:radius="3dp"
+            app:shape="round" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="96dp"
+            android:orientation="vertical"
+            android:paddingLeft="10dp">
+
+            <TextView
+                android:id="@+id/tv_book_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="大唐荣耀"
+                android:textColor="@color/text_color_33"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/tv_book_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:drawableLeft="@mipmap/ic_default_author_left"
+                android:drawablePadding="3dp"
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:text="作者："
+                android:textSize="@dimen/textSize_12" />
+
+            <TextView
+                android:id="@+id/tv_book_update_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:lineSpacingMultiplier="1.1"
+                android:maxLines="1"
+                android:text="更新日期："
+                android:textSize="@dimen/textSize_12" />
+
+            <TextView
+                android:id="@+id/tv_book_source"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:drawableLeft="@mipmap/ic_default_source_left"
+                android:drawablePadding="3dp"
+                android:gravity="center_vertical"
+                android:includeFontPadding="false"
+                android:text="来源(3)：起点"
+                android:textSize="@dimen/textSize_12" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/id_click_read"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="阅读" />
+
+            <Button
+                android:id="@+id/id_click_add_book"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="加入书架" />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_book_newest_chapter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:lineSpacingMultiplier="1.1"
+            android:maxLines="1"
+            android:text="最新章节："
+            android:textSize="@dimen/textSize_12" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:background="@color/bg_color" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:lineSpacingMultiplier="1.1"
+            android:maxLines="1"
+            android:paddingLeft="10dp"
+            android:text="简介"
+            android:textColor="@color/text_color_33"
+            android:textSize="@dimen/textSize_18" />
+
+
+        <TextView
+            android:id="@+id/tv_book_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:drawablePadding="3dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:includeFontPadding="false"
+            android:lineSpacingMultiplier="1.1"
+            android:padding="10dp"
+            android:text="简介：相传，远古时期的龙祭大陆，是太古神龙的天下，时至今日，神龙灭绝殆尽。
+龙辰，原本是一无是处的纨绔子弟，却因为父亲所遗留的神秘玉佩，吞食远古神龙之传承精血，以亿万龙族之血脉，坐拥美女，鏖战天下！
+破龙脉，凝神丹，武动天河星辰，身渡轮回万劫，任你修为通天彻地，实力霸绝寰宇，我自有远古十大祖龙精血，吞食宇宙天地，掌控无尽生灵，龙之传人，万古长存！"
+            android:textSize="@dimen/textSize_12" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/id_book_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="查看目录(共有341章)" />
+</LinearLayout>

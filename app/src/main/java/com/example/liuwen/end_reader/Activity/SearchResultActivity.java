@@ -1,12 +1,15 @@
 package com.example.liuwen.end_reader.Activity;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.example.liuwen.end_reader.Adapter.SearchResultAdapter;
 import com.example.liuwen.end_reader.Base.BaseActivity;
@@ -23,6 +26,8 @@ import com.liaoinstan.springview.widget.SpringView;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.bingoogolapple.androidcommon.adapter.BGAOnRVItemClickListener;
 
 /**
  * author : liuwen
@@ -59,7 +64,7 @@ public class SearchResultActivity extends BaseActivity {
                         activity.showTipDialog(new TipDialog.ITipDialogListener() {
                             @Override
                             public void clickLeft() {
-
+                                activity.closeActivity();
                             }
 
                             @Override
@@ -118,6 +123,15 @@ public class SearchResultActivity extends BaseActivity {
         });
         mSpringView.setHeader(new DefaultHeader(getActivityContext()));
         mSpringView.setFooter(new DefaultFooter(getActivityContext()));
+
+        mAdapter.setOnRVItemClickListener(new BGAOnRVItemClickListener() {
+            @Override
+            public void onRVItemClick(ViewGroup parent, View itemView, int position) {
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("bookInfo", mAdapter.getItem(position));
+                openActivity(BookInfoActivity.class, bundle);
+            }
+        });
     }
 
 
@@ -130,7 +144,6 @@ public class SearchResultActivity extends BaseActivity {
                 hideLoadingDialog();
                 mSearchBooks = (List<Book>) o;
                 mHandler.sendEmptyMessage(0);
-
             }
 
             @Override

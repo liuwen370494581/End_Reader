@@ -160,17 +160,14 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public void showTipDialog(TipDialog.ITipDialogListener mListener) {
         try {
-            if (mTipDialog == null) {
-                mTipDialog = new TipDialog(getActivityContext(), getString(R.string.loading_fail));
-                mTipDialog.show();
-                mTipDialog.setCancelable(false);
-                mTipDialog.setRightButtonVisible(true);
-                mTipDialog.setCenterPosition();
-                mTipDialog.setLeftText(getString(R.string.cancel));
-                mTipDialog.setRightText(getString(R.string.loading_again));
-                mTipDialog.setListener(mListener);
-            }
-
+            mTipDialog = new TipDialog(getActivityContext(), getString(R.string.loading_fail));
+            mTipDialog.show();
+            mTipDialog.setCancelable(false);
+            mTipDialog.setRightButtonVisible(true);
+            mTipDialog.setCenterPosition();
+            mTipDialog.setLeftText(getString(R.string.cancel));
+            mTipDialog.setRightText(getString(R.string.loading_again));
+            mTipDialog.setListener(mListener);
         } catch (Exception e) {
             e.printStackTrace();
         }

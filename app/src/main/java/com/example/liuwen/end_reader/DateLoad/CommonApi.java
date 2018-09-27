@@ -14,8 +14,6 @@ import java.util.Map;
  * desc   :
  */
 public class CommonApi extends BaseApi {
-
-
     /**
      * 搜索小说名
      *
