@@ -1,5 +1,6 @@
 package com.example.liuwen.end_reader.Activity;
 
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -21,7 +22,7 @@ public class BookInfoActivity extends BaseActivity implements View.OnClickListen
     private Book mCurrentBook;
     private ImageView ivBookCover;
     private TextView tvBookTitle, tvBookAuthor, tvBookDesc, tvBookNewChapter, tvBookUpdateTime;
-    private Button btnBookRead, btnBookList, btnAddBook;
+    private TextView btnBookRead, btnBookList, btnAddBook;
 
 
     @Override
@@ -67,7 +68,9 @@ public class BookInfoActivity extends BaseActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         if (v == btnBookRead) {
-
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("Book", mCurrentBook);
+            openActivity(ReadBookActivity.class, bundle);
         } else if (v == btnBookList) {
 
         } else if (v == btnAddBook) {

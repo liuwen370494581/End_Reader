@@ -20,4 +20,6 @@ public class Config {
     public final static String s = "11940364935628058505";
     public final static String TAG = "MainActivity";
     public static boolean isRSA = false;
+
+    public final static String MyTAG = "woaini";
 }

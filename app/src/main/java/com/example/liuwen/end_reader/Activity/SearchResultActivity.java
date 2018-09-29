@@ -11,11 +11,13 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.liuwen.end_reader.Action.MyReadHandler;
 import com.example.liuwen.end_reader.Adapter.SearchResultAdapter;
 import com.example.liuwen.end_reader.Base.BaseActivity;
 import com.example.liuwen.end_reader.Bean.Book;
 import com.example.liuwen.end_reader.CallBack.ResultCallback;
 import com.example.liuwen.end_reader.DateLoad.CommonApi;
+import com.example.liuwen.end_reader.Listener.OnHandlerListener;
 import com.example.liuwen.end_reader.R;
 import com.example.liuwen.end_reader.Utils.ToastUtils;
 import com.example.liuwen.end_reader.View.TipDialog;
@@ -39,25 +41,16 @@ public class SearchResultActivity extends BaseActivity {
 
     private String bookName;
     private List<Book> mSearchBooks = new ArrayList<>();
-    private MyHandler mHandler = new MyHandler(this);
     private RecyclerView mRecyclerView;
     private SpringView mSpringView;
     private SearchResultAdapter mAdapter;
-
-    private static class MyHandler extends Handler {
-        private WeakReference<Context> reference;
-
-        public MyHandler(Context context) {
-            reference = new WeakReference<>(context);
-        }
-
+    private MyReadHandler myReadHandler = new MyReadHandler(this, new OnHandlerListener() {
         @Override
-        public void handleMessage(Message msg) {
+        public void handlerMessage(Message message, WeakReference<Context> reference) {
             final SearchResultActivity activity = (SearchResultActivity) reference.get();
             if (activity != null) {
-                switch (msg.what) {
+                switch (message.what) {
                     case 0:
-                        //获取成功
                         activity.mAdapter.setData(activity.mSearchBooks);
                         break;
                     case 1:
@@ -74,10 +67,11 @@ public class SearchResultActivity extends BaseActivity {
                         });//获取失败
                         break;
                     default:
+                        break;
                 }
             }
         }
-    }
+    });
 
 
     @Override
@@ -134,7 +128,6 @@ public class SearchResultActivity extends BaseActivity {
         });
     }
 
-
     private void searchBookForName() {
         showLoadingDialog(getString(R.string.on_loading), true, null);
         mAdapter.setTitle(bookName);
@@ -143,13 +136,13 @@ public class SearchResultActivity extends BaseActivity {
             public void onFinish(Object o, int code) {
                 hideLoadingDialog();
                 mSearchBooks = (List<Book>) o;
-                mHandler.sendEmptyMessage(0);
+                myReadHandler.sendEmptyMessage(0);
             }
 
             @Override
             public void onError(Exception e) {
                 hideLoadingDialog();
-                mHandler.sendEmptyMessage(1);
+                myReadHandler.sendEmptyMessage(1);
             }
         });
     }

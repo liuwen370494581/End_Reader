@@ -64,11 +64,11 @@ public class CornerImageView extends AppCompatImageView {
         setLayerType(LAYER_TYPE_HARDWARE, null);
         if (attrs != null) {
             TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.CornerImageView);
-            mShapeMode = a.getInt(R.styleable.CornerImageView_shape, 0);
+            mShapeMode = a.getInt(R.styleable.CornerImageView_cor_shape, 0);
             mRadius = a.getDimension(R.styleable.CornerImageView_radius, 0);
 
-            mStrokeWidth = a.getDimension(R.styleable.CornerImageView_stroke_width, 0);
-            mStrokeColor = a.getColor(R.styleable.CornerImageView_stroke_color, mStrokeColor);
+            mStrokeWidth = a.getDimension(R.styleable.CornerImageView_cor_stroke_width, 0);
+            mStrokeColor = a.getColor(R.styleable.CornerImageView_cor_stroke_color, mStrokeColor);
             a.recycle();
         }
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);

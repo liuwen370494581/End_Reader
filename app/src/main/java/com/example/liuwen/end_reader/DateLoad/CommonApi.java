@@ -38,4 +38,54 @@ public class CommonApi extends BaseApi {
         });
     }
 
+
+
+     /**
+     * 获取章节列表
+     * @param url
+     * @param callback
+     */
+    public static void getBookChapters(String url, final ResultCallback callback){
+        getCommonReturnHtmlStringApi(url, null, "GBK", new ResultCallback() {
+            @Override
+            public void onFinish(Object o, int code) {
+                callback.onFinish(HtmlParserUtil.getChaptersFromHtml((String) o),0);
+            }
+
+            @Override
+            public void onError(Exception e) {
+                callback.onError(e);
+
+            }
+        });
+    }
+
+    /**
+     * 获取章节正文
+     * @param url
+     * @param callback
+     */
+    public static void getChapterContent(String url, final ResultCallback callback){
+        int tem = url.indexOf("\"");
+        if (tem != -1){
+            url = url.substring(0,tem);
+        }
+        getCommonReturnHtmlStringApi(Config.nameSpace_tianlai + url, null, "GBK", new ResultCallback() {
+            @Override
+            public void onFinish(Object o, int code) {
+                callback.onFinish(HtmlParserUtil.getContentFormHtml((String)o),0);
+
+            }
+
+            @Override
+            public void onError(Exception e) {
+                callback.onError(e);
+            }
+        });
+    }
+
+
+
+
+
 }

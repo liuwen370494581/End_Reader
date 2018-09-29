@@ -23,4 +23,13 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
+
+    <style name="bg">
+        <item name="corners_radius">4dp</item>
+        <item name="solid_color">@color/translucent</item>
+        <item name="stroke_color">@color/transparent</item>
+        <item name="stroke_width">2dp</item>
+    </style>
+
+
 </resources>

@@ -20,6 +20,7 @@ import com.example.liuwen.end_reader.R;
 import com.example.liuwen.end_reader.Utils.ActivityKiller;
 import com.example.liuwen.end_reader.Utils.StatusBarUtil;
 import com.example.liuwen.end_reader.Utils.ToastUtils;
+import com.example.liuwen.end_reader.View.BackGround.BackgroundLibrary;
 import com.example.liuwen.end_reader.View.LoadingProgressDialog;
 import com.example.liuwen.end_reader.View.TipDialog;
 
@@ -42,6 +43,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        BackgroundLibrary.inject(this);
         super.onCreate(savedInstanceState);
         if (!isTaskRoot()) {
             Intent intent = getIntent();

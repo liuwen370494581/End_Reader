@@ -14,7 +14,7 @@
         android:layout_height="96dp"
         android:src="@mipmap/ic_default_cover"
         app:radius="3dp"
-        app:shape="round" />
+        app:cor_shape="round" />
 
     <LinearLayout
         android:layout_width="match_parent"
