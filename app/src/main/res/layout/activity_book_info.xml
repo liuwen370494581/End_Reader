@@ -12,6 +12,11 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line_color" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="center_vertical"
@@ -101,16 +106,17 @@
 
             <TextView
                 android:id="@+id/id_click_read"
-                style="@style/bg"
+                style="@style/bg_01"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="阅读" />
+                android:text="阅读"
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/id_click_add_book"
-                style="@style/bg"
+                style="@style/bg_02"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginLeft="4dp"

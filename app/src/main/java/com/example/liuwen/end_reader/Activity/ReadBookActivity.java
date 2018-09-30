@@ -50,7 +50,6 @@ public class ReadBookActivity extends BaseActivity {
                         activity.mAdapter.setData(activity.mChapterList);
                         break;
                     case 1:
-
                         break;
                     default:
                         break;

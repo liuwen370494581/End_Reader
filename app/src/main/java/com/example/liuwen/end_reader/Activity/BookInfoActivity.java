@@ -67,12 +67,12 @@ public class BookInfoActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("Book", mCurrentBook);
         if (v == btnBookRead) {
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("Book", mCurrentBook);
             openActivity(ReadBookActivity.class, bundle);
         } else if (v == btnBookList) {
-
+            openActivity(ChapterListActivity.class, bundle);
         } else if (v == btnAddBook) {
 
         }

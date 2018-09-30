@@ -24,10 +24,17 @@
     </style>
 
 
-    <style name="bg">
+    <style name="bg_01">
         <item name="corners_radius">4dp</item>
-        <item name="solid_color">@color/translucent</item>
+        <item name="solid_color">@color/main_text_color_focus</item>
         <item name="stroke_color">@color/transparent</item>
+        <item name="stroke_width">2dp</item>
+    </style>
+
+    <style name="bg_02">
+        <item name="corners_radius">4dp</item>
+        <item name="solid_color">@color/white</item>
+        <item name="stroke_color">@color/line_color</item>
         <item name="stroke_width">2dp</item>
     </style>
 
